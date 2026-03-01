@@ -1,0 +1,178 @@
+Políticas y Guía Interna de NovaTech HR SaaS
+1. Introducción
+
+NovaTech HR SaaS es una empresa tecnológica especializada en soluciones de gestión de recursos humanos para medianas y grandes organizaciones. Este documento contiene las políticas internas, beneficios corporativos, procedimientos operativos y lineamientos de soporte que aplican a todos los empleados de tiempo completo y medio tiempo.
+
+La información aquí descrita debe considerarse oficial y vigente hasta su actualización formal por el departamento de Recursos Humanos.
+
+2. Jornada Laboral y Modalidad de Trabajo
+
+La jornada laboral estándar en NovaTech es de 40 horas semanales, distribuidas de lunes a viernes. El horario base es de 9:00 a.m. a 6:00 p.m., con una hora de almuerzo.
+
+La empresa opera bajo un modelo híbrido flexible. Los empleados pueden trabajar de forma remota hasta tres días por semana, siempre que sus funciones lo permitan y cuenten con aprobación de su líder directo.
+
+El registro de horas se realiza a través del portal interno HR Portal, en la sección "Time Tracking".
+
+3. Vacaciones y Permisos
+
+Todos los empleados de tiempo completo tienen derecho a 22 días hábiles de vacaciones por año calendario.
+
+Los empleados de medio tiempo tienen derecho a 12 días hábiles de vacaciones anuales.
+
+Las vacaciones deben solicitarse con al menos 15 días de anticipación mediante el HR Portal, en la sección "Solicitudes de Ausencia". El líder directo debe aprobar la solicitud antes de su validación final por Recursos Humanos.
+
+Las vacaciones no utilizadas no son acumulables más allá de 5 días al siguiente año, salvo autorización especial del área de RRHH.
+
+Permisos adicionales incluyen:
+
+5 días por enfermedad justificada.
+
+3 días por duelo familiar directo.
+
+2 días por mudanza.
+
+4. Plan de Salud Corporativo
+
+El plan de salud corporativo de NovaTech se denomina MediPlus.
+
+Todos los empleados de tiempo completo están afiliados automáticamente a MediPlus desde su primer día laboral.
+
+El plan MediPlus cubre:
+
+Consultas médicas generales.
+
+Atención especializada.
+
+Hospitalización.
+
+Exámenes de laboratorio básicos.
+
+Atención de urgencias.
+
+El seguro dental asociado a MediPlus tiene un copago máximo de $150 USD por procedimiento mayor y $20 USD para medicamentos recetados.
+
+El plan no cubre procedimientos estéticos ni tratamientos experimentales.
+
+Para utilizar el seguro, el empleado debe presentar su identificación corporativa y su número de afiliación MediPlus.
+
+5. Beneficios Adicionales
+
+NovaTech ofrece los siguientes beneficios adicionales:
+
+Bono anual por desempeño.
+
+Subsidio mensual de transporte de $80 USD.
+
+Programa de bienestar corporativo con acceso a gimnasios asociados.
+
+Reembolso educativo de hasta $1,000 USD anuales para cursos relacionados con el rol.
+
+El bono anual por desempeño se calcula en función de la evaluación anual y puede variar entre el 5% y el 15% del salario anual.
+
+6. Nómina y Pagos
+
+El pago de nómina se realiza el último día hábil de cada mes mediante transferencia bancaria.
+
+Los comprobantes de pago están disponibles en el HR Portal en la sección "Payroll".
+
+En caso de inconsistencias en la nómina, el empleado debe abrir un ticket en el sistema interno de soporte dentro de los primeros 5 días hábiles posteriores al pago.
+
+Las deducciones incluyen:
+
+Impuestos legales.
+
+Aportes a seguridad social.
+
+Aportes voluntarios si el empleado lo autoriza.
+
+7. Sistema de Soporte Interno
+
+NovaTech cuenta con un sistema de tickets para soporte interno accesible desde el HR Portal en la sección "Help Desk".
+
+Los tickets se clasifican en tres niveles de prioridad:
+
+P1 (Crítico): Impacta operaciones centrales. Tiempo de respuesta máximo: 4 horas.
+
+P2 (Alto): Impacta productividad individual o de equipo. Tiempo de respuesta máximo: 24 horas.
+
+P3 (Bajo): Consultas generales o mejoras. Tiempo de respuesta máximo: 72 horas.
+
+Para escalar un ticket urgente (P1), el empleado debe:
+
+Crear el ticket en el sistema.
+
+Marcar la prioridad como P1.
+
+Notificar por correo al líder del área correspondiente.
+
+Confirmar recepción del equipo de soporte.
+
+8. Seguridad y Privacidad de la Información
+
+Todos los empleados deben cumplir con la política de seguridad de la información.
+
+Está prohibido:
+
+Compartir credenciales.
+
+Descargar información sensible en dispositivos no autorizados.
+
+Utilizar redes públicas sin VPN corporativa.
+
+El acceso al sistema requiere autenticación multifactor (MFA).
+
+En caso de sospecha de brecha de seguridad, el empleado debe reportarlo inmediatamente al equipo de IT Security mediante un ticket P1.
+
+9. Evaluación de Desempeño
+
+La evaluación de desempeño se realiza una vez al año.
+
+Los criterios incluyen:
+
+Cumplimiento de objetivos.
+
+Trabajo en equipo.
+
+Innovación.
+
+Responsabilidad.
+
+El resultado de la evaluación impacta el bono anual por desempeño y oportunidades de promoción.
+
+10. Terminación de Contrato
+
+La terminación de contrato puede darse por:
+
+Renuncia voluntaria.
+
+Finalización de contrato temporal.
+
+Decisión empresarial justificada.
+
+El empleado debe devolver todos los activos corporativos el último día laboral.
+
+El acceso a sistemas internos será desactivado inmediatamente después de la finalización del contrato.
+
+11. Procedimiento para Solicitar Reembolso Educativo
+
+Para solicitar reembolso educativo:
+
+Completar el curso relacionado con el rol.
+
+Obtener factura oficial.
+
+Subir comprobante en el HR Portal en la sección "Reembolsos".
+
+Esperar validación de RRHH.
+
+El reembolso se realiza en la siguiente nómina.
+
+El monto máximo anual de reembolso es de $1,000 USD.
+
+12. Glosario de Términos
+
+HR Portal: Plataforma interna de gestión de recursos humanos.
+MediPlus: Plan de salud corporativo.
+P1, P2, P3: Niveles de prioridad en el sistema de tickets.
+Copago: Monto que el empleado paga directamente por ciertos servicios médicos.
+MFA: Autenticación multifactor.

@@ -1,4 +1,4 @@
-# RAG-RAG-FAQ-Assistant
+# RAG-FAQ-Assistant
 
 ## Descripción del Proyecto
 
@@ -6,11 +6,11 @@ RAG-FAQ-Assistant es un sistema de recuperación aumentada por generación (Retr
 
 Ante una consulta del usuario, el sistema recupera los fragmentos más relevantes mediante búsqueda por similitud coseno y utiliza un modelo de lenguaje para generar respuestas fundamentadas exclusivamente en el contexto recuperado. La salida se entrega en formato JSON estructurado para garantizar transparencia, trazabilidad y auditabilidad.
 
-Arquitectura del Sistema
+## Arquitectura del Sistema
 
 El sistema implementa una arquitectura RAG en dos pipelines desacoplados:
 
-1️⃣ Pipeline de Indexación
+### 1️⃣ Pipeline de Indexación
 
 * Carga del documento fuente (faq_document.txt)
 * Segmentación mediante RecursiveCharacterTextSplitter
@@ -20,7 +20,7 @@ El sistema implementa una arquitectura RAG en dos pipelines desacoplados:
 * Almacenamiento persistente en ChromaDB (./chroma_db)
 Este pipeline permite reconstruir completamente el índice vectorial desde el documento original.
 
-2️⃣ Pipeline de Consulta
+### 2️⃣ Pipeline de Consulta
 
 * Conversión de la pregunta del usuario en embedding
 * Búsqueda vectorial por similitud coseno (top-k = 3)
@@ -30,7 +30,7 @@ Este pipeline permite reconstruir completamente el índice vectorial desde el do
 * Retorno en formato JSON estructurado
 El sistema devuelve:
 
-´´ bash
+```bash
 {
   "user_question": "...",
   "system_answer": "...",
@@ -42,18 +42,19 @@ El sistema devuelve:
     }
   ]
 }
-´´
+```
 
-Justificación Técnica
-Estrategia de Chunking
+## Justificación Técnica
+
+### Estrategia de Chunking
 
 Se utiliza segmentación por tamaño fijo con solapamiento (300 / 50) para equilibrar coherencia contextual y control del límite de tokens. Esta estrategia reduce la fragmentación semántica y asegura que cada chunk permanezca dentro del rango óptimo de procesamiento del modelo.
 
-Método de Búsqueda Vectorial
+### Método de Búsqueda Vectorial
 
 Se implementa búsqueda por similitud coseno sobre embeddings generados con OpenAI. Este método permite recuperar fragmentos semánticamente relevantes incluso cuando la formulación de la pregunta difiere del texto original.
 
-Uso de RAG
+### Uso de RAG
 
 El sistema aplica recuperación antes de generación, lo que permite:
 
@@ -63,11 +64,11 @@ Minimizar alucinaciones.
 
 Proporcionar transparencia al exponer los fragmentos utilizados.
 
-
-
-Instalación
+## Instalación
 
 Clonar el repositorio:
+
+```bash
 git clone <repo-url>
 cd RAG-FAQ-Assistant
-
+```
