@@ -5,7 +5,6 @@ from typing import List, Dict, Any
 
 from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-from langchain_community.vectorstores import Chroma
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_chroma import Chroma
 
@@ -24,29 +23,41 @@ def load_environment():
     }
 
 
+
+import chromadb
+
+
 def load_vectorstore(persist_dir: str, collection_name: str, embedding_model: str):
     embeddings = OpenAIEmbeddings(model=embedding_model)
 
+    # Cliente explícito de Chroma persistente
+    client = chromadb.PersistentClient(path=persist_dir)
+
     vectordb = Chroma(
-        persist_directory=persist_dir,
+        client=client,
         collection_name=collection_name,
         embedding_function=embeddings,
     )
 
-    return vectordb
+    count = vectordb._collection.count()
+    print("DEBUG: Documentos en colección:", count)
 
+    if count == 0:
+        raise ValueError(
+            f"La colección '{collection_name}' está vacía o no fue cargada correctamente."
+        )
+
+    return vectordb
 
 def retrieve_chunks(vectordb, question: str, top_k: int):
     results = vectordb.similarity_search_with_score(question, k=top_k)
 
     chunks = []
-    for doc, distance in results:
-        similarity_score = 1 - distance  # convertir distancia coseno a similitud
-
+    for doc, score in results:
         chunks.append({
             "chunk_id": doc.metadata.get("chunk_index"),
             "text": doc.page_content,
-            "similarity_score": round(similarity_score, 4)
+            "similarity_score": round(score, 4)
         })
 
     return chunks
@@ -60,7 +71,11 @@ def generate_answer(llm_model: str, question: str, context: str) -> str:
     llm = ChatOpenAI(model=llm_model, temperature=0)
 
     prompt = ChatPromptTemplate.from_template("""
-Responde la pregunta basándote EXCLUSIVAMENTE en el contexto proporcionado.
+Responde la pregunta utilizando únicamente la información presente en el contexto.
+
+Si existen múltiples escenarios posibles (por ejemplo, empleados de tiempo completo o medio tiempo),
+indica claramente cada caso con su respectiva respuesta.
+
 Si la información no está en el contexto, responde exactamente:
 "No encontre esa informacion en los documentos."
 
@@ -81,34 +96,44 @@ Pregunta:
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--question", type=str, required=True)
-    args = parser.parse_args()
 
-    config = load_environment()
+    try:
+        print("DEBUG: Entrando a main()")
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--question", type=str, required=True)
+        args = parser.parse_args()
 
-    vectordb = load_vectorstore(
-        config["persist_dir"],
-        config["collection_name"],
-        config["embedding_model"],
-    )
+        print("DEBUG: Cargando entorno")
+        config = load_environment()
 
-    chunks = retrieve_chunks(vectordb, args.question, config["top_k"])
-    context = build_context(chunks)
+        print("DEBUG: Cargando vectorstore")
+        vectordb = load_vectorstore(
+            config["persist_dir"],
+            config["collection_name"],
+            config["embedding_model"],
+        )
 
-    answer = generate_answer(
-        config["llm_model"],
-        args.question,
-        context
-    )
+        print("DEBUG: Obteniendo chunks")
+        chunks = retrieve_chunks(vectordb, args.question, config["top_k"])
+        context = build_context(chunks)
 
-    result = {
-        "user_question": args.question,
-        "system_answer": answer,
-        "chunks_related": chunks
-    }
+        print("DEBUG: Generando respuesta")
+        answer = generate_answer(
+            config["llm_model"],
+            args.question,
+            context
+        )
 
-    print(json.dumps(result, indent=2, ensure_ascii=False))
+        result = {
+            "user_question": args.question,
+            "system_answer": answer,
+            "chunks_related": chunks
+        }
+
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+
+    except Exception as e:
+        print(f"Error al ejecutar el script: {str(e)}")
 
 
 if __name__ == "__main__":

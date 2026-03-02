@@ -115,7 +115,6 @@ def build_and_persist_index(
     )
 
     # En algunas versiones, persist() es opcional, pero lo llamamos explícitamente.
-    vectordb.persist()
     return vectordb, ids
 
 
