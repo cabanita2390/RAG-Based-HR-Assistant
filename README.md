@@ -202,3 +202,58 @@ RAG-Based-HR-Assistant/
 ├── .env.example
 └── README.md
 ```
+
+🔬 Justificación Técnica de Diseño
+1. Uso de Embeddings (OpenAI text-embedding-3-small)
+
+Se seleccionó este modelo por:
+
+Alta calidad semántica.
+
+Bajo costo relativo.
+
+Buen balance entre performance y dimensionalidad.
+
+Compatibilidad nativa con LangChain.
+
+Alternativas como Sentence-Transformers fueron consideradas, pero se priorizó estabilidad industrial y consistencia en evaluación.
+
+2. Base de Datos Vectorial: Chroma (persistente)
+
+Se eligió Chroma por:
+
+Integración directa con LangChain.
+
+Persistencia en disco.
+
+Facilidad de uso para entornos locales.
+
+Adecuado para prototipos industriales escalables.
+
+La persistencia garantiza reproducibilidad y evita re-indexar en cada ejecución.
+
+3. Métrica de Recuperación: Similitud Coseno
+
+Chroma utiliza distancia coseno como métrica base.
+
+En el sistema:
+
+Se convierte distancia → similitud.
+
+Se documenta explícitamente en la salida JSON.
+
+Se usa top-k retrieval.
+
+Esto cumple el requisito explícito del ejercicio académico.
+
+4. Evaluador Automático LLM-Based
+
+Se implementó un segundo LLM para evaluar:
+
+Relevancia de los chunks.
+
+Fidelidad al contexto.
+
+Completitud de la respuesta.
+
+Esto transforma el sistema en un RAG auditable y confiable, alineado con estándares industriales.

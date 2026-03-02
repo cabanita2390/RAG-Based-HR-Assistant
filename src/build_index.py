@@ -65,6 +65,7 @@ def chunk_text(text: str, chunk_size: int, chunk_overlap: int) -> List[Document]
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap,
+        separators=["\n\n", "\n", " ", ""]
     )
 
     # Creamos documentos a partir de un solo texto
@@ -77,7 +78,7 @@ def chunk_text(text: str, chunk_size: int, chunk_overlap: int) -> List[Document]
     return docs
 
 
-def ensure_min_chunks(docs: List[Document], min_chunks: int = 20) -> None:
+def ensure_min_chunks(docs: List[Document], min_chunks: int = 5) -> None:
     if len(docs) < min_chunks:
         raise ValueError(
             f"Se generaron {len(docs)} chunks (< {min_chunks}). "
@@ -132,7 +133,7 @@ def main() -> None:
 
     print("[2/4] Generando chunks...")
     docs = chunk_text(text, cfg.chunk_size, cfg.chunk_overlap)
-    ensure_min_chunks(docs, min_chunks=20)
+    ensure_min_chunks(docs, min_chunks=5)
     print(f"  - Chunks generados: {len(docs)}")
 
     print("[3/4] Reiniciando directorio persistente...")

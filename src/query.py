@@ -1,6 +1,7 @@
 import os
 import json
 import argparse
+import logging
 from typing import List, Dict, Any
 
 from dotenv import load_dotenv
@@ -27,7 +28,7 @@ def load_environment():
 import chromadb
 
 
-def load_vectorstore(persist_dir: str, collection_name: str, embedding_model: str):
+def load_vectorstore(persist_dir: str, collection_name: str, embedding_model: str) -> Chroma:
     embeddings = OpenAIEmbeddings(model=embedding_model)
 
     # Cliente explícito de Chroma persistente
@@ -40,7 +41,7 @@ def load_vectorstore(persist_dir: str, collection_name: str, embedding_model: st
     )
 
     count = vectordb._collection.count()
-    print("DEBUG: Documentos en colección:", count)
+    logging.info("Documentos en colección: %d", count)
 
     if count == 0:
         raise ValueError(
@@ -49,7 +50,7 @@ def load_vectorstore(persist_dir: str, collection_name: str, embedding_model: st
 
     return vectordb
 
-def retrieve_chunks(vectordb, question: str, top_k: int):
+def retrieve_chunks(vectordb: Chroma, question: str, top_k: int) -> List[Dict[str, Any]]:
     results = vectordb.similarity_search_with_score(question, k=top_k)
 
     chunks = []
@@ -95,30 +96,30 @@ Pregunta:
     return response.content.strip()
 
 
-def main():
+def main() -> None:
 
     try:
-        print("DEBUG: Entrando a main()")
+        logging.info("Entrando a main()")
         parser = argparse.ArgumentParser()
         parser.add_argument("--question", type=str, required=True)
         args = parser.parse_args()
 
-        print("DEBUG: Cargando entorno")
+        logging.info("Cargando entorno")
         config = load_environment()
 
-        print("DEBUG: Cargando vectorstore")
+        logging.info("Cargando vectorstore")
         vectordb = load_vectorstore(
             config["persist_dir"],
             config["collection_name"],
             config["embedding_model"],
         )
 
-        print("DEBUG: Obteniendo chunks")
+        logging.info("Obteniendo chunks")
         chunks = retrieve_chunks(vectordb, args.question, config["top_k"])
         chunks = sorted(chunks, key=lambda x: x["similarity_score"])
         context = build_context(chunks)
 
-        print("DEBUG: Generando respuesta")
+        logging.info("Generando respuesta")
         answer = generate_answer(
             config["llm_model"],
             args.question,
