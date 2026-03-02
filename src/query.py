@@ -115,6 +115,7 @@ def main():
 
         print("DEBUG: Obteniendo chunks")
         chunks = retrieve_chunks(vectordb, args.question, config["top_k"])
+        chunks = sorted(chunks, key=lambda x: x["similarity_score"])
         context = build_context(chunks)
 
         print("DEBUG: Generando respuesta")
